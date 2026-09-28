@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECOBANK MOBILE SERVICES - Step 2</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #123b6d;
+    }
+
+    header {
+      background: #0b4ea2;
+      color: #fff;
+      text-align: center;
+      padding: 22px 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      padding: 50px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-container {
+      width: 100%;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 17px;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .checkbox-label input {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: #168a3a;
+      cursor: pointer;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #168a3a;
+      color: #fff;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #9aa9a0;
+      cursor: not-allowed;
+    }
+
+    footer {
+      background: #0b4ea2;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    ECOBANK MOBILE SERVICES
+  </header>
+
+  <main>
+    <div class="form-container">
+      <form id="stepTwoForm">
+
+        <label class="checkbox-label">
+          <input type="checkbox" id="terms" required>
+          <span>I agree to the Terms and Conditions</span>
+        </label>
+
+        <button type="submit" id="continueButton" disabled>
+          Continue
+        </button>
+
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    The Pan African Bank
+  </footer>
+
+  <script>
+    const demoCode = sessionStorage.getItem("demoCode");
+
+    if (!demoCode) {
+      window.location.href = "/step-1.html";
+    }
+
+    const termsCheckbox = document.getElementById("terms");
+    const continueButton = document.getElementById("continueButton");
+
+    termsCheckbox.addEventListener("change", function () {
+      continueButton.disabled = !this.checked;
+    });
+
+    document.getElementById("stepTwoForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      if (!termsCheckbox.checked) {
+        return;
+      }
+
+      sessionStorage.setItem("termsAccepted", "true");
+      window.location.href = "/step-3.html";
+    });
+  </script>
+
+</body>
+</html>
