@@ -1,141 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECOBANK MOBILE SERVICES - Step 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+:root {
+  --blue: #0A3D91;
+  --blue2: #1256c4;
+  --green: #168a3a;
+  --green2: #20a84b;
+  --white: #ffffff;
+  --light: #f5f8fc;
+}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #123b6d;
-    }
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--light);
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
 
-    header {
-      background: #0b4ea2;
-      color: #fff;
-      text-align: center;
-      padding: 22px 15px;
-      font-size: 22px;
-      font-weight: bold;
-    }
+/* Header */
+.header {
+  margin-bottom: 25px;
+}
 
-    main {
-      flex: 1;
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-      padding: 50px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.header-title {
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 16px;
+}
 
-    .form-container {
-      width: 100%;
-    }
+.subtext {
+  color: #555;
+  font-size: 14px;
+  margin-top: 10px;
+}
 
-    label {
-      display: block;
-      margin-bottom: 12px;
-      font-size: 18px;
-      font-weight: bold;
-    }
+/* Card */
+.container {
+  background: var(--white);
+  border-radius: 16px;
+  max-width: 360px;
+  margin: 30px auto;
+  padding: 30px 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
 
-    input {
-      width: 100%;
-      padding: 15px;
-      border: 2px solid #0b4ea2;
-      border-radius: 8px;
-      font-size: 18px;
-      outline: none;
-    }
+/* Label */
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+}
 
-    input:focus {
-      border-color: #168a3a;
-      box-shadow: 0 0 0 3px rgba(22, 138, 58, 0.15);
-    }
+/* Input */
+input[type="text"] {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #d5dce8;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 5px;
+  outline: none;
+  transition: 0.2s;
+  color: var(--blue);
+  background: #fff;
+}
 
-    button {
-      width: 100%;
-      margin-top: 20px;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
-      background: #168a3a;
-      color: #fff;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+input[type="text"]:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(10, 61, 145, 0.12);
+}
 
-    button:hover {
-      background: #116d2e;
-    }
+/* Button */
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
 
-    footer {
-      background: #0b4ea2;
-      color: #fff;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-    }
-  </style>
+button:hover {
+  background: linear-gradient(135deg, #116d2e, var(--green));
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Status */
+.notice {
+  font-size: 13px;
+  color: #777;
+  margin-top: 12px;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    ECOBANK MOBILE SERVICES
-  </header>
+<div class="header">
+  <div class="header-title">DEMO MOBILE SERVICES</div>
+  <div class="subtext">Enter your demo verification code</div>
+</div>
 
-  <main>
-    <div class="form-container">
-      <form id="stepOneForm">
-        <label for="demoCode">Enter Demo Verification Code</label>
+<div class="container">
+  <form id="demoForm">
 
-        <input
-          type="text"
-          id="demoCode"
-          name="demoCode"
-          placeholder="Enter demo code"
-          autocomplete="off"
-          required
-        >
+    <label for="demoCode">Demo Verification Code</label>
 
-        <button type="submit">Continue</button>
-      </form>
+    <input
+      type="text"
+      id="demoCode"
+      name="demo_code"
+      placeholder="••••••"
+      maxlength="6"
+      inputmode="numeric"
+      pattern="[0-9]{1,6}"
+      required
+    >
+
+    <button type="submit" id="submitButton">
+      Validate →
+    </button>
+
+    <div class="notice" id="status">
+      Demo mode — no real authentication code is required.
     </div>
-  </main>
 
-  <footer>
-    The Pan African Bank
-  </footer>
+  </form>
+</div>
 
-  <script>
-    document.getElementById("stepOneForm").addEventListener("submit", function (event) {
-      event.preventDefault();
+<script>
+const form = document.getElementById("demoForm");
+const codeInput = document.getElementById("demoCode");
+const statusEl = document.getElementById("status");
+const submitButton = document.getElementById("submitButton");
 
-      const code = document.getElementById("demoCode").value.trim();
+codeInput.addEventListener("input", () => {
+  codeInput.value = codeInput.value.replace(/\D/g, "").slice(0, 6);
 
-      if (!code) {
-        return;
-      }
+  if (codeInput.value.length === 6) {
+    statusEl.textContent = "Demo code entered ✔️";
+    statusEl.style.color = "#168a3a";
+  } else {
+    statusEl.textContent = "Demo mode — enter a numeric code.";
+    statusEl.style.color = "#777";
+  }
+});
 
-      sessionStorage.setItem("demoCode", code);
-      window.location.href = "step-2.html";
-    });
-  </script>
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const code = codeInput.value.trim();
+
+  if (!code || !/^\d{1,6}$/.test(code)) {
+    statusEl.textContent = "Enter a valid demo code.";
+    statusEl.style.color = "#b00000";
+    return;
+  }
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Processing...";
+  statusEl.textContent = "Demo verification complete ✔️";
+  statusEl.style.color = "#168a3a";
+
+  setTimeout(() => {
+    window.location.href = "next.html";
+  }, 800);
+});
+</script>
 
 </body>
 </html>
