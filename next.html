@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --blue: #0A3D91;
+  --blue2: #1256c4;
+  --green: #168a3a;
+  --green2: #20a84b;
+  --white: #ffffff;
+  --light: #f5f8fc;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--light);
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 25px;
+}
+
+.header-title {
+  background: linear-gradient(135deg, var(--blue), var(--blue2));
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.subtext {
+  color: #555;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.container {
+  background: var(--white);
+  border-radius: 16px;
+  max-width: 360px;
+  margin: 30px auto;
+  padding: 30px 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.terms input {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--green);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 22px;
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #116d2e, var(--green));
+}
+
+button:disabled {
+  background: #aeb8b1;
+  cursor: not-allowed;
+}
+
+.notice {
+  font-size: 13px;
+  color: #777;
+  margin-top: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="header-title">DEMO MOBILE SERVICES</div>
+  <div class="subtext">Please review and accept the terms</div>
+</div>
+
+<div class="container">
+
+  <form id="termsForm">
+
+    <label class="terms">
+      <input type="checkbox" id="termsCheckbox">
+      <span>
+        I agree to the Terms and Conditions for this demo.
+      </span>
+    </label>
+
+    <button type="submit" id="continueButton" disabled>
+      Continue →
+    </button>
+
+    <div class="notice" id="status">
+      Please accept the terms to continue.
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+const form = document.getElementById("termsForm");
+const checkbox = document.getElementById("termsCheckbox");
+const button = document.getElementById("continueButton");
+const status = document.getElementById("status");
+
+checkbox.addEventListener("change", () => {
+  button.disabled = !checkbox.checked;
+
+  if (checkbox.checked) {
+    status.textContent = "Terms accepted ✔️";
+    status.style.color = "#168a3a";
+  } else {
+    status.textContent = "Please accept the terms to continue.";
+    status.style.color = "#777";
+  }
+});
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (!checkbox.checked) {
+    return;
+  }
+
+  sessionStorage.setItem("demoTermsAccepted", "true");
+
+  button.disabled = true;
+  button.textContent = "Loading...";
+  status.textContent = "Continuing...";
+  status.style.color = "#168a3a";
+
+  setTimeout(() => {
+    window.location.href = "verify.html";
+  }, 400);
+});
+</script>
+
+</body>
+</html>
