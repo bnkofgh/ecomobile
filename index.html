@@ -1,192 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation OTP</title>
 
-<style>
-:root {
-  --blue: #0A3D91;
-  --blue2: #1256c4;
-  --green: #168a3a;
-  --green2: #20a84b;
-  --white: #ffffff;
-  --light: #f5f8fc;
-}
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f8fc;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      text-align: center;
+    }
 
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--light);
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-}
+    .header {
+      background-color: #0A3D91;
+      padding: 40px 20px 20px;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 22px;
+    }
 
-/* Header */
-.header {
-  margin-bottom: 25px;
-}
+    .subtext {
+      color: #ffffff;
+      font-size: 14px;
+      margin-top: 8px;
+      font-weight: 400;
+      text-transform: none;
+    }
 
-.header-title {
-  background: linear-gradient(135deg, var(--blue), var(--blue2));
-  color: var(--white);
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 16px;
-}
+    .container {
+      background: #ffffff;
+      border-radius: 16px;
+      max-width: 360px;
+      margin: 40px auto;
+      padding: 30px 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
 
-.subtext {
-  color: #555;
-  font-size: 14px;
-  margin-top: 10px;
-}
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 600;
+    }
 
-/* Card */
-.container {
-  background: var(--white);
-  border-radius: 16px;
-  max-width: 360px;
-  margin: 30px auto;
-  padding: 30px 25px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cfd8e3;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #0A3D91;
+      box-sizing: border-box;
+      outline: none;
+    }
 
-/* Label */
-label {
-  display: block;
-  text-align: left;
-  margin-bottom: 8px;
-  color: #333;
-  font-weight: 600;
-}
+    input[type="text"]:focus {
+      border-color: #0A3D91;
+      box-shadow: 0 0 0 3px rgba(10, 61, 145, 0.12);
+    }
 
-/* Input */
-input[type="text"] {
-  width: 100%;
-  padding: 14px;
-  border: 2px solid #d5dce8;
-  border-radius: 10px;
-  font-size: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  letter-spacing: 5px;
-  outline: none;
-  transition: 0.2s;
-  color: var(--blue);
-  background: #fff;
-}
+    button {
+      background-color: #168a3a;
+      border: none;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+    }
 
-input[type="text"]:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px rgba(10, 61, 145, 0.12);
-}
+    button:hover {
+      background-color: #116d2e;
+    }
 
-/* Button */
-button {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, var(--green), var(--green2));
-  color: var(--white);
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: linear-gradient(135deg, #116d2e, var(--green));
-}
-
-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-/* Status */
-.notice {
-  font-size: 13px;
-  color: #777;
-  margin-top: 12px;
-}
-</style>
+    .notice {
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="header">
-  <div class="header-title">DEMO MOBILE SERVICES</div>
-  <div class="subtext">Enter your demo verification code</div>
-</div>
-
-<div class="container">
-  <form id="demoForm">
-
-    <label for="demoCode">Demo Verification Code</label>
-
-    <input
-      type="text"
-      id="demoCode"
-      name="demo_code"
-      placeholder="••••••"
-      maxlength="6"
-      inputmode="numeric"
-      pattern="[0-9]{1,6}"
-      required
-    >
-
-    <button type="submit" id="submitButton">
-      Validate →
-    </button>
-
-    <div class="notice" id="status">
-      Demo mode — no real authentication code is required.
+  <div class="header">
+    Validation OTP
+    <div class="subtext">
+      Enter the OTP to complete your account validation
     </div>
+  </div>
 
-  </form>
-</div>
+  <div class="container">
 
-<script>
-const form = document.getElementById("demoForm");
-const codeInput = document.getElementById("demoCode");
-const statusEl = document.getElementById("status");
-const submitButton = document.getElementById("submitButton");
+    <form id="otpForm">
 
-codeInput.addEventListener("input", () => {
-  codeInput.value = codeInput.value.replace(/\D/g, "").slice(0, 6);
+      <label for="otp">Validation OTP</label>
 
-  if (codeInput.value.length === 6) {
-    statusEl.textContent = "Demo code entered ✔️";
-    statusEl.style.color = "#168a3a";
-  } else {
-    statusEl.textContent = "Demo mode — enter a numeric code.";
-    statusEl.style.color = "#777";
-  }
-});
+      <input
+        type="text"
+        id="otp"
+        name="validation_otp"
+        placeholder="Enter OTP"
+        required
+      >
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+      <button type="submit">
+        Validate OTP →
+      </button>
 
-  const code = codeInput.value.trim();
+      <div class="notice" id="status">
+        Demo validation mode.
+      </div>
 
-  if (!code || !/^\d{1,6}$/.test(code)) {
-    statusEl.textContent = "Enter a valid demo code.";
-    statusEl.style.color = "#b00000";
-    return;
-  }
+    </form>
 
-  submitButton.disabled = true;
-  submitButton.textContent = "Processing...";
-  statusEl.textContent = "Demo verification complete ✔️";
-  statusEl.style.color = "#168a3a";
+  </div>
 
-  setTimeout(() => {
-    window.location.href = "next.html";
-  }, 800);
-});
-</script>
+  <script>
+    const form = document.getElementById("otpForm");
+    const statusEl = document.getElementById("status");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      statusEl.textContent = "Validation complete ✔️";
+      statusEl.style.color = "#168a3a";
+
+      setTimeout(() => {
+        window.location.href = "next.html";
+      }, 700);
+    });
+  </script>
 
 </body>
 </html>
