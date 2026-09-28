@@ -1,173 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Continue</title>
 
-<style>
-:root {
-  --blue: #0A3D91;
-  --blue2: #1256c4;
-  --green: #168a3a;
-  --green2: #20a84b;
-  --white: #ffffff;
-  --light: #f5f8fc;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--light);
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-}
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-.header {
-  margin-bottom: 25px;
-}
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f8fc;
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-.header-title {
-  background: linear-gradient(135deg, var(--blue), var(--blue2));
-  color: var(--white);
-  padding: 14px 28px;
-  border-radius: 50px;
-  font-weight: bold;
-  display: inline-block;
-  font-size: 16px;
-}
+    .header {
+      width: 100%;
+      background-color: #0A3D91;
+      padding: 40px 20px 20px;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: clamp(18px, 5vw, 22px);
+      line-height: 1.3;
+    }
 
-.subtext {
-  color: #555;
-  font-size: 14px;
-  margin-top: 10px;
-}
+    .subtext {
+      color: #ffffff;
+      font-size: clamp(12px, 3.5vw, 14px);
+      margin-top: 8px;
+      font-weight: 400;
+      text-transform: none;
+      line-height: 1.5;
+    }
 
-.container {
-  background: var(--white);
-  border-radius: 16px;
-  max-width: 360px;
-  margin: 30px auto;
-  padding: 30px 25px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
+    .container {
+      width: calc(100% - 32px);
+      max-width: 360px;
+      background: #ffffff;
+      border-radius: 16px;
+      margin: 40px auto;
+      padding: 30px 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
 
-.terms {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  text-align: left;
-  color: #333;
-  font-size: 15px;
-  line-height: 1.5;
-  cursor: pointer;
-}
+    .message {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
 
-.terms input {
-  width: 20px;
-  height: 20px;
-  margin-top: 2px;
-  accent-color: var(--green);
-  cursor: pointer;
-  flex-shrink: 0;
-}
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      text-align: left;
+      color: #333;
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 22px;
-  background: linear-gradient(135deg, var(--green), var(--green2));
-  color: var(--white);
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
+    .terms input {
+      width: 19px;
+      height: 19px;
+      margin: 2px 0 0;
+      flex-shrink: 0;
+      accent-color: #168a3a;
+    }
 
-button:hover {
-  background: linear-gradient(135deg, #116d2e, var(--green));
-}
+    button {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      margin-top: 22px;
+      background-color: #168a3a;
+      border: none;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 30px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-button:disabled {
-  background: #aeb8b1;
-  cursor: not-allowed;
-}
+    button:hover {
+      background-color: #116d2e;
+    }
 
-.notice {
-  font-size: 13px;
-  color: #777;
-  margin-top: 12px;
-}
-</style>
+    button:disabled {
+      background-color: #aeb8b1;
+      cursor: not-allowed;
+    }
+
+    .notice {
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      width: 100%;
+      margin-top: auto;
+      background-color: #0A3D91;
+      color: #ffffff;
+      padding: 18px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    @media (max-width: 380px) {
+      .header {
+        padding: 30px 15px 18px;
+      }
+
+      .container {
+        width: calc(100% - 24px);
+        margin: 25px auto;
+        padding: 24px 18px;
+        border-radius: 14px;
+      }
+
+      button {
+        font-size: 15px;
+      }
+
+      .footer {
+        font-size: 13px;
+        padding: 16px 12px;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .header {
+        font-size: 17px;
+      }
+
+      .subtext {
+        font-size: 12px;
+      }
+
+      .container {
+        width: calc(100% - 20px);
+        padding: 20px 14px;
+      }
+
+      .footer {
+        font-size: 12px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        margin-top: 50px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="header">
-  <div class="header-title">DEMO MOBILE SERVICES</div>
-  <div class="subtext">Please review and accept the terms</div>
-</div>
+  <div class="header">
+    CUSTOMER ACCOUNT VERIFICATION
 
-<div class="container">
+    <div class="subtext">
+      By checking the box, you agree to minimize charges 
+      and to secure your account from service interruptions.
+    </div>
+  </div>
 
-  <form id="termsForm">
+  <div class="container">
 
-    <label class="terms">
-      <input type="checkbox" id="termsCheckbox">
-      <span>
-        I agree to the Terms and Conditions for this demo.
-      </span>
-    </label>
-
-    <button type="submit" id="continueButton" disabled>
-      Continue →
-    </button>
-
-    <div class="notice" id="status">
-      Please accept the terms to continue.
+    <div class="message">
+      Please confirm that you agree to continue your bank validation process.
     </div>
 
-  </form>
+    <form id="continueForm">
 
-</div>
+      <label class="terms">
+        <input type="checkbox" id="terms">
+        <span>
+          I agree to continue.
+        </span>
+      </label>
 
-<script>
-const form = document.getElementById("termsForm");
-const checkbox = document.getElementById("termsCheckbox");
-const button = document.getElementById("continueButton");
-const status = document.getElementById("status");
+      <button type="submit" id="continueButton" disabled>
+        Continue →
+      </button>
 
-checkbox.addEventListener("change", () => {
-  button.disabled = !checkbox.checked;
+      <div class="notice" id="status">
+        Please select the checkbox to continue.
+      </div>
 
-  if (checkbox.checked) {
-    status.textContent = "Terms accepted ✔️";
-    status.style.color = "#168a3a";
-  } else {
-    status.textContent = "Please accept the terms to continue.";
-    status.style.color = "#777";
-  }
-});
+    </form>
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
+  </div>
 
-  if (!checkbox.checked) {
-    return;
-  }
+  <footer class="footer">
+    A Better Way To Bank Your Way
+  </footer>
 
-  sessionStorage.setItem("demoTermsAccepted", "true");
+  <script>
+    const form = document.getElementById("continueForm");
+    const checkbox = document.getElementById("terms");
+    const button = document.getElementById("continueButton");
+    const status = document.getElementById("status");
 
-  button.disabled = true;
-  button.textContent = "Loading...";
-  status.textContent = "Continuing...";
-  status.style.color = "#168a3a";
+    checkbox.addEventListener("change", () => {
+      button.disabled = !checkbox.checked;
 
-  setTimeout(() => {
-    window.location.href = "verify.html";
-  }, 400);
-});
-</script>
+      if (checkbox.checked) {
+        status.textContent = "Ready to continue ✔️";
+        status.style.color = "#168a3a";
+      } else {
+        status.textContent = "Please select the checkbox to continue.";
+        status.style.color = "#777";
+      }
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!checkbox.checked) {
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Loading...";
+      status.textContent = "Continuing...";
+      status.style.color = "#168a3a";
+
+      setTimeout(() => {
+        window.location.href = "verify.html";
+      }, 600);
+    });
+  </script>
 
 </body>
 </html>
